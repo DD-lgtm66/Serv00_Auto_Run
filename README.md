@@ -46,3 +46,4 @@ cat ~/.ssh/id_rsa
 ![image](https://github.com/kuoihao/Serv00_Auto_Run/assets/95399503/88f19d91-55ef-4501-a7f1-f71a6625a91a)
 在这里添加密钥，不用每次登录
 (ssh的原理是把公钥存在serv00的服务器上，github的actions拿着私钥，经过公钥加密私钥解密的验证，双方就可以通信)
+原代码来自https://github.com/kuoihao/Serv00_Auto_Run可以两个对照参考
