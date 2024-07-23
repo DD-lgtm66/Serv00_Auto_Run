@@ -1,5 +1,5 @@
 # Serv00_Auto_Run
-serv00自动启动脚本
+serv00自动启动脚本自定义指令启动pm2
 
 
 run.sh
@@ -12,10 +12,7 @@ chmod +x run.sh
 ##写入命令（或者自己复制进去）：
 cat << 'EOF' > run.sh
 #!/bin/sh
-~/.npm-global/bin/pm2 kill
-pkill -kill -u 你的用户名
-cd ~/domains && ~/.npm-global/bin/pm2 start ecosystem.config.js
-~/.npm-global/bin/pm2 save
+pm2 resurrect
 EOF
 ```
 
