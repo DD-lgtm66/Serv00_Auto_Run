@@ -15,7 +15,7 @@ chmod +x run.sh
 ##写入命令（或者自己复制进去）：
 cat << 'EOF' > run.sh
 #!/bin/sh
-~/.npm-global/bin/pm2 resurrect
+pm2 resurrect
 EOF
 ```
 
