@@ -21,5 +21,6 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Run script on remote server
-      run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
+      #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
       # banfeng@s4.serv00.com这里换成自己的服务器名字
+      run: ssh -o StrictHostKeyChecking=no DD88-64395@s9.serv00.com "./run.sh"
