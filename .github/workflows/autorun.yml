@@ -23,7 +23,8 @@ jobs:
     - name: Run script on remote server
       #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
       # banfeng@s4.serv00.com这里换成自己的服务器名字
-      run: ssh -o StrictHostKeyChecking=no DD88-64395@s9.serv00.com "./run.sh"
+      #run: ssh -o StrictHostKeyChecking=no DD88-64395@s9.serv00.com "./run.sh"
+      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME1 }}@s9.serv00.com "./run.sh"
       
     - name: Setup SSH2
       uses: webfactory/ssh-agent@v0.5.3
@@ -33,7 +34,8 @@ jobs:
     - name: Run script on remote server2
       #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
       # banfeng@s4.serv00.com这里换成自己的服务器名字
-      run: ssh -o StrictHostKeyChecking=no DD886695@s9.serv00.com "./run.sh"
+      #run: ssh -o StrictHostKeyChecking=no DD886695@s9.serv00.com "./run.sh"
+      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME2 }}@s9.serv00.com "./run.sh"
 
     - name: Setup SSH3
       uses: webfactory/ssh-agent@v0.5.3
@@ -42,7 +44,8 @@ jobs:
     - name: Run script on remote server3
       #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
       # banfeng@s4.serv00.com这里换成自己的服务器名字
-      run: ssh -o StrictHostKeyChecking=no DDa9588@s10.serv00.com "./run.sh"
+      #run: ssh -o StrictHostKeyChecking=no DDa9588@s10.serv00.com "./run.sh"
+      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME3 }}@s10.serv00.com "./run.sh"
   # ssh-and-run2:
   #   runs-on: ubuntu-latest
   #   steps:
