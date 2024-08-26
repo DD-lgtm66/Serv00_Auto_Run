@@ -27,23 +27,12 @@ jobs:
       run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME1 }}@s9.serv00.com "./run.sh"
     
     - name: sendMsg
-      uses: appleboy/telegram-action@master
-      with:
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        chatid: ${{ secrets.TELEGRAM_TO }}
-        message: |
-          👇新的提交👇
-          
-          👤提交人: [${{ github.actor }}]
-
-          📄提交信息: ${{ github.event.commits[0].message }}
-
-          📦仓库: ${{ github.repository }}
-        button: true
-        button_name: 👀查看更改👀
-        button_url: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-        is_notify: true
-        is_preview: true
+    if: cancelled() == false
+    uses: xinthink/action-telegram@v1.1
+    with:
+      botToken: ${{ secrets.TELEGRAM_TOKEN }}
+      chatId: ${{ secrets.TELEGRAM_TO }}
+      jobStatus: ${{ job.status }}
     # - name: sendMsg
     #   uses: appleboy/telegram-action@master
     #   with:
