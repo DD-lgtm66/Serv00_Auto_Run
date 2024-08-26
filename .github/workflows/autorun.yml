@@ -15,24 +15,39 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    # - name: Setup SSH
-    #   uses: webfactory/ssh-agent@v0.5.3
-    #   with:
-    #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    # - name: Run script on remote server
-    #   #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
-    #   # banfeng@s4.serv00.com这里换成自己的服务器名字
-    #   #run: ssh -o StrictHostKeyChecking=no DD88-64395@s9.serv00.com "./run.sh"
-    #   run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME1 }}@s9.serv00.com "./run.sh"
-    
+    - name: Run script on remote server
+      #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
+      # banfeng@s4.serv00.com这里换成自己的服务器名字
+      #run: ssh -o StrictHostKeyChecking=no DD88-64395@s9.serv00.com "./run.sh"
+      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME1 }}@s9.serv00.com "./run.sh"
+        
+    - name: Setup SSH2
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY1 }}
+        
+    - name: Run script on remote server2
+      #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
+      # banfeng@s4.serv00.com这里换成自己的服务器名字
+      #run: ssh -o StrictHostKeyChecking=no DD886695@s9.serv00.com "./run.sh"
+      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME2 }}@s9.serv00.com "./run.sh"
+
+    - name: Setup SSH3
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY2 }}
+    - name: Run script on remote server3
+      #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
+      # banfeng@s4.serv00.com这里换成自己的服务器名字
+      #run: ssh -o StrictHostKeyChecking=no DDa9588@s10.serv00.com "./run.sh"
+      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME3 }}@s10.serv00.com "./run.sh"
+
     - name: sendMsg
-      # if: cancelled() == false
-      # uses: xinthink/action-telegram@v1.1
-      # with:
-      #   botToken: ${{ secrets.TELEGRAM_TOKEN }}
-      #   chatId: ${{ secrets.TELEGRAM_TO }}
-      #   jobStatus: ${{ job.status }}
       uses: robotomize/notify-telegram@v0.1.0
       if: always()
       with:
@@ -40,38 +55,6 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }} # token secret
           status: ${{ job.status }} # do not modify this line
           #message: ${{ secrets.message }} # custom message
-    # - name: sendMsg
-    #   uses: appleboy/telegram-action@master
-    #   with:
-    #       to: ${{ secrets.TELEGRAM_TO }}
-    #       token: ${{ secrets.TELEGRAM_TOKEN }}
-    #       message: |
-    #         From: ${{ github.event.sender.login }}
-    #         Title: ${{ github.event.issue.title }}
-    #         Link: ${{ github.event.comment.html_url }}
-    #         Body:
-    #         ${{ github.event.comment.body }}
-        
-    # - name: Setup SSH2
-    #   uses: webfactory/ssh-agent@v0.5.3
-    #   with:
-    #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY1 }}
-        
-    # - name: Run script on remote server2
-    #   #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
-    #   # banfeng@s4.serv00.com这里换成自己的服务器名字
-    #   #run: ssh -o StrictHostKeyChecking=no DD886695@s9.serv00.com "./run.sh"
-    #   run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME2 }}@s9.serv00.com "./run.sh"
-
-    # - name: Setup SSH3
-    #   uses: webfactory/ssh-agent@v0.5.3
-    #   with:
-    #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY2 }}
-    # - name: Run script on remote server3
-    #   #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
-    #   # banfeng@s4.serv00.com这里换成自己的服务器名字
-    #   #run: ssh -o StrictHostKeyChecking=no DDa9588@s10.serv00.com "./run.sh"
-    #   run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME3 }}@s10.serv00.com "./run.sh"
   # ssh-and-run2:
   #   runs-on: ubuntu-latest
   #   steps:
