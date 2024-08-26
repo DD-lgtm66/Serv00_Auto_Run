@@ -25,27 +25,46 @@ jobs:
       # banfeng@s4.serv00.com这里换成自己的服务器名字
       #run: ssh -o StrictHostKeyChecking=no DD88-64395@s9.serv00.com "./run.sh"
       run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME1 }}@s9.serv00.com "./run.sh"
-      
-    - name: Setup SSH2
-      uses: webfactory/ssh-agent@v0.5.3
+    
+    - name: sendMsg
+    - uses: colutius/Telegram-Msg@main
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY1 }}
-        
-    - name: Run script on remote server2
-      #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
-      # banfeng@s4.serv00.com这里换成自己的服务器名字
-      #run: ssh -o StrictHostKeyChecking=no DD886695@s9.serv00.com "./run.sh"
-      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME2 }}@s9.serv00.com "./run.sh"
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        chatid: ${{ secrets.TELEGRAM_TO }}
+        message: |
+          👇新的提交👇
+          
+          👤提交人: [${{ github.actor }}]
 
-    - name: Setup SSH3
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY2 }}
-    - name: Run script on remote server3
-      #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
-      # banfeng@s4.serv00.com这里换成自己的服务器名字
-      #run: ssh -o StrictHostKeyChecking=no DDa9588@s10.serv00.com "./run.sh"
-      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME3 }}@s10.serv00.com "./run.sh"
+          📄提交信息: ${{ github.event.commits[0].message }}
+
+          📦仓库: ${{ github.repository }}
+        button: true
+        button_name: 👀查看更改👀
+        button_url: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+        is_notify: true
+        is_preview: true
+        
+    # - name: Setup SSH2
+    #   uses: webfactory/ssh-agent@v0.5.3
+    #   with:
+    #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY1 }}
+        
+    # - name: Run script on remote server2
+    #   #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
+    #   # banfeng@s4.serv00.com这里换成自己的服务器名字
+    #   #run: ssh -o StrictHostKeyChecking=no DD886695@s9.serv00.com "./run.sh"
+    #   run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME2 }}@s9.serv00.com "./run.sh"
+
+    # - name: Setup SSH3
+    #   uses: webfactory/ssh-agent@v0.5.3
+    #   with:
+    #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY2 }}
+    # - name: Run script on remote server3
+    #   #run: ssh -o StrictHostKeyChecking=no banfeng@s2.serv00.com "./run.sh"
+    #   # banfeng@s4.serv00.com这里换成自己的服务器名字
+    #   #run: ssh -o StrictHostKeyChecking=no DDa9588@s10.serv00.com "./run.sh"
+    #   run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME3 }}@s10.serv00.com "./run.sh"
   # ssh-and-run2:
   #   runs-on: ubuntu-latest
   #   steps:
