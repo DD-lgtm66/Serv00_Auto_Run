@@ -26,35 +26,35 @@ jobs:
       #run: ssh -o StrictHostKeyChecking=no DD88-64395@s9.serv00.com "./run.sh"
       run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_LOGIN_NAME1 }}@s9.serv00.com "./run.sh"
     
-    # - name: sendMsg
-    #   uses: colutius/Telegram-Msg@main
-    #   with:
-    #     token: ${{ secrets.TELEGRAM_TOKEN }}
-    #     chatid: ${{ secrets.TELEGRAM_TO }}
-    #     message: |
-    #       👇新的提交👇
-          
-    #       👤提交人: [${{ github.actor }}]
-
-    #       📄提交信息: ${{ github.event.commits[0].message }}
-
-    #       📦仓库: ${{ github.repository }}
-    #     button: true
-    #     button_name: 👀查看更改👀
-    #     button_url: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-    #     is_notify: true
-    #     is_preview: true
     - name: sendMsg
       uses: appleboy/telegram-action@master
       with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            From: ${{ github.event.sender.login }}
-            Title: ${{ github.event.issue.title }}
-            Link: ${{ github.event.comment.html_url }}
-            Body:
-            ${{ github.event.comment.body }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        chatid: ${{ secrets.TELEGRAM_TO }}
+        message: |
+          👇新的提交👇
+          
+          👤提交人: [${{ github.actor }}]
+
+          📄提交信息: ${{ github.event.commits[0].message }}
+
+          📦仓库: ${{ github.repository }}
+        button: true
+        button_name: 👀查看更改👀
+        button_url: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+        is_notify: true
+        is_preview: true
+    # - name: sendMsg
+    #   uses: appleboy/telegram-action@master
+    #   with:
+    #       to: ${{ secrets.TELEGRAM_TO }}
+    #       token: ${{ secrets.TELEGRAM_TOKEN }}
+    #       message: |
+    #         From: ${{ github.event.sender.login }}
+    #         Title: ${{ github.event.issue.title }}
+    #         Link: ${{ github.event.comment.html_url }}
+    #         Body:
+    #         ${{ github.event.comment.body }}
         
     - name: Setup SSH2
       uses: webfactory/ssh-agent@v0.5.3
